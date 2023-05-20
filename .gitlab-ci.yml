@@ -1,0 +1,31 @@
+image: node:14
+
+stages:
+  - install
+  - build
+  - test
+  - deploy
+
+before_script:
+  - apt-get update -qq
+  - npm install -g @angular/cli
+
+install:
+  stage: install
+  script:
+    - npm install
+
+build:
+  stage: build
+  script:
+    - ng build --prod
+
+test:
+  stage: test
+  script:
+    - ng test
+
+deploy:
+  stage: deploy
+  script:
+    - your_deployment_script.sh
